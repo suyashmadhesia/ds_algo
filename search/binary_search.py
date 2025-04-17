@@ -46,6 +46,6 @@ def search_in_rotated_array(nums, target):
 
 def search_in_rotated_array_dup(nums, target):
     '''
-    Q: What if array have duplicate we need to return left most index of the target ?
+    Q: What if array have duplicate we need to return left most or right most index of the target ?
     '''
     
