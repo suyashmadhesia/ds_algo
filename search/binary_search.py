@@ -73,6 +73,28 @@ def search_in_rotated_array_dup(nums, target):
                 j = mid - 1
 
     return result
+
+
+def binary_search_condition(nums):
+    '''
+    Condition based binary search
+    '''
+
+    def condition(val):
+        pass
+
+    left = 0
+    right = len(nums) - 1
+    while left <= right:
+        mid = left + (right - left) // 2
+        if condition(nums[mid]):
+            right = mid
+        else:
+            left = mid + 1
+    return left
+
+
+
     
 
 print(search_in_rotated_array_dup([1, 0, 1,1,1], 1))
