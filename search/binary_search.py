@@ -94,7 +94,13 @@ def binary_search_condition(nums):
     return left
 
 
-
-    
-
-print(search_in_rotated_array_dup([1, 0, 1,1,1], 1))
+def binary_search_with_bounds(nums, target):
+    '''
+    1. Lower Bound
+    2. Upper Bound
+    Looking for a number which is just greator then target (lets say target = 4)
+     F  F  T  T  T  T   T
+    [2, 3, 5, 6, 7, 9, 10]
+    Our task is to find the first true, in an array where the prefix was filled with falses and then there were trues 
+    if it is presented in this way we can apply binary search
+    '''
