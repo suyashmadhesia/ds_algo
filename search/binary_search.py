@@ -98,9 +98,24 @@ def binary_search_with_bounds(nums, target):
     '''
     1. Lower Bound
     2. Upper Bound
-    Looking for a number which is just greator then target (lets say target = 4)
+    Looking for a number which is just smaller| greator then target (lets say target = 4)
      F  F  T  T  T  T   T
     [2, 3, 5, 6, 7, 9, 10]
-    Our task is to find the first true, in an array where the prefix was filled with falses and then there were trues 
-    if it is presented in this way we can apply binary search
+    To find the pivot (minimum here), you're effectively looking for the first "True" in a FFFFTTTT pattern where:
+    False means you're in the right of the pivot (still in rotated part)
+    True means you've reached or passed the pivot 
+
+    Goal: Find the smallest element (i.e., pivot).
+    We use the rule:
+    If nums[mid] > nums[right]: go right → False
+    If nums[mid] <= nums[right]: go left → True
     '''
+    left = 0
+    right = len(nums) - 1
+    while left < right:
+        mid = left + (right - left) // 2
+        if nums[mid] > nums[right]:        
+            left = mid+1
+        else:
+            right = mid
+    return nums[left]
