@@ -23,7 +23,7 @@ def isSameTreeRecursiveApproach(self, p: Optional[TreeNode], q: Optional[TreeNod
     if p.val != q.val or p.val != q.val:
         return False
 
-    left = self.isSameTree(p.left, q.left) 
-    right = self.isSameTree(p.right, q.right)
+    left = isSameTreeRecursiveApproach(p.left, q.left) 
+    right = isSameTreeRecursiveApproach(p.right, q.right)
 
     return left and right
