@@ -18,7 +18,7 @@ def find_sqrt_with_binary_search(num): # only for integers
     return -1
 
 
-def find_sqrt_with_precision(x, precision=1e-4):
+def find_sqrt_with_precision(x, precision=1e-9):
     if x < 0:
         return None  # square root not defined for negative numbers
 
@@ -34,4 +34,4 @@ def find_sqrt_with_precision(x, precision=1e-4):
 
     return (low + high) / 2
 
-print(find_sqrt_with_precision(2))
+print(find_sqrt_with_precision(16))
