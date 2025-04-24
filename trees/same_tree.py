@@ -2,9 +2,8 @@
 Function to find if a tree is same to another tree structure and value wise
 """
 
-from typing import Optional, List
+from typing import Optional
 
-from collections import deque
 
 class TreeNode:
 
@@ -13,7 +12,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def isSameTreeRecursiveApproach(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
     if not q and not p:
         return True
 
@@ -23,7 +22,7 @@ def isSameTreeRecursiveApproach(self, p: Optional[TreeNode], q: Optional[TreeNod
     if p.val != q.val or p.val != q.val:
         return False
 
-    left = isSameTreeRecursiveApproach(p.left, q.left) 
-    right = isSameTreeRecursiveApproach(p.right, q.right)
+    left = isSameTree(p.left, q.left) 
+    right = isSameTree(p.right, q.right)
 
     return left and right
