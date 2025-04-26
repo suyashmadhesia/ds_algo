@@ -19,6 +19,14 @@ class Heap:
         self._parent = lambda k: (k - 1) // 2
         self._heapify()
 
+    def __iter__(self):
+        for i in self._list:
+            yield i
+
+
+    def __len__(self):
+        return self._len
+
     def __str__(self):
         return f"<Heap{[i for i in self._list]}>"
 
@@ -68,5 +76,23 @@ class Heap:
         self._len-=1
         self._sift_down(0)
         return value
+        
+
+
+
+# heap = Heap([])
+
+# res = [80, 60, 50, 30, 20, 16, 13, 8]
+# while res:
+#     heap.push(res.pop())
+
+# res = []
+# print(heap)
+
+# while heap:
+#     res.append(heap.pop())
+
+# print(res)
+    
 
     
