@@ -34,7 +34,9 @@ class QuickSort:
         if l < h:
             j = self._partition(l, h)
             self._sort(l ,j)
+            print("left",self.nums)
             self._sort(j+1, h)
+            print("right",self.nums)
 
 
     def sort(self):
