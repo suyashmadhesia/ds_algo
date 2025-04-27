@@ -1,5 +1,7 @@
 '''
 Merge sort first divide list into smaller list then merge them
+TC: O(nlogn)
+SC: O(n) where n is recursive stack 
 '''
 
 
