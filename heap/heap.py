@@ -9,6 +9,9 @@ class Heap:
     left child is at index = 2i+1
     right child is at index = 2(i+1)
     its parent is at math.floor((i-1)/2)
+
+    insertion in heap takes O(logn)
+    deletion takes O(logn)
     '''
 
     def __init__(self, elements=[]):

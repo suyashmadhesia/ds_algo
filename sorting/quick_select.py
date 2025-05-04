@@ -4,7 +4,7 @@ import random
 def quickselect(nums, k):
     """
         Step-by-Step Working:
-        Find the k-th largest → means we actually find (len - k)-th smallest. for smalled k = k-1 index
+        Find the k-th largest → means we actually find (len - k)-th smallest. for smallest k = k-1 index
         Here, len(nums) = 8
         k=3 → we find (8-3) = 5-th smallest.
         Now run QuickSelect to find the 5th smallest element.
