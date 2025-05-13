@@ -77,3 +77,20 @@ jobs = [(1, 4, 20), (2, 6, 60), (4, 7, 30)]
 Expected Output: 50
 
 """
+
+from typing import List
+
+
+def schedule1(jobs: List[int], deadline: List[int]) -> int:
+    ...
+
+
+def schedule2(jobs: List[int], deadline: List[int]) -> int:
+    ...
+
+def schedule3(jobs: List[int], deadline: List[int]) -> int:
+    ...
+
+
+def schedule4(jobs: List[int], deadline: List[int]) -> int:
+    ...
