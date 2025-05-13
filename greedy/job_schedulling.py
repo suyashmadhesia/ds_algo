@@ -78,15 +78,37 @@ Expected Output: 50
 
 """
 
-from typing import List
+from typing import List, Tuple
+from collections import defaultdict
 
 
-def schedule1(jobs: List[int], deadline: List[int]) -> int:
-    ...
+def schedule1(jobs: List[Tuple[int]]) -> int:
+    mp = defaultdict(bool)
+    jobs = [(profit, deadline) for deadline, profit in jobs]
+    jobs.sort(reverse=True)
+    total_profit = 0
+    for profit, deadline in jobs:
+        if deadline not in mp:
+            total_profit+=profit
+            mp[deadline] = True
+    print(total_profit)
 
 
-def schedule2(jobs: List[int], deadline: List[int]) -> int:
-    ...
+
+def schedule2(jobs: List[Tuple[int]]) -> Tuple[int]:
+    mp = defaultdict(bool)
+    jobs = [(profit, deadline) for deadline, profit in jobs]
+    jobs.sort(reverse=True)
+    print(jobs)
+    total_profit = 0
+    job = 0
+    for profit, deadline in jobs:
+        if deadline not in mp:
+            total_profit+=profit
+            mp[deadline] = True
+            job+=1
+    print(mp)
+    print(total_profit, job, )
 
 def schedule3(jobs: List[int], deadline: List[int]) -> int:
     ...
@@ -94,3 +116,6 @@ def schedule3(jobs: List[int], deadline: List[int]) -> int:
 
 def schedule4(jobs: List[int], deadline: List[int]) -> int:
     ...
+
+
+schedule2([(2, 100), (1, 19), (2, 27), (1, 25), (3, 15)])
