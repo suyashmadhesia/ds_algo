@@ -83,32 +83,46 @@ from collections import defaultdict
 
 
 def schedule1(jobs: List[Tuple[int]]) -> int:
-    mp = defaultdict(bool)
+    # Convert (deadline, profit) to (profit, deadline)
     jobs = [(profit, deadline) for deadline, profit in jobs]
-    jobs.sort(reverse=True)
+    jobs.sort(reverse=True)  # Sort by profit descending
+
+    max_deadline = max(deadline for _, deadline in jobs)
+    slots = [False] * (max_deadline + 1)  # slots[1..max_deadline]
+    
     total_profit = 0
+
     for profit, deadline in jobs:
-        if deadline not in mp:
-            total_profit+=profit
-            mp[deadline] = True
-    print(total_profit)
+        # Try to schedule on the latest available day ≤ deadline
+        for d in range(deadline, 0, -1):
+            if not slots[d]:
+                slots[d] = True
+                total_profit += profit
+                break
+
+    return total_profit
 
 
 
 def schedule2(jobs: List[Tuple[int]]) -> Tuple[int]:
-    mp = defaultdict(bool)
+    # Convert (deadline, profit) to (profit, deadline)
     jobs = [(profit, deadline) for deadline, profit in jobs]
-    jobs.sort(reverse=True)
-    print(jobs)
+    jobs.sort(reverse=True)  # Sort by profit descending
+
+    max_deadline = max(deadline for _, deadline in jobs)
+    slots : List[bool] = [False] * (max_deadline + 1)  # slots[1..max_deadline]
+    
     total_profit = 0
-    job = 0
+
     for profit, deadline in jobs:
-        if deadline not in mp:
-            total_profit+=profit
-            mp[deadline] = True
-            job+=1
-    print(mp)
-    print(total_profit, job, )
+        # Try to schedule on the latest available day ≤ deadline
+        for d in range(deadline, 0, -1):
+            if not slots[d]:
+                slots[d] = True
+                total_profit += profit
+                break
+
+    print (total_profit, slots.count(True))
 
 def schedule3(jobs: List[int], deadline: List[int]) -> int:
     ...
