@@ -1,60 +1,72 @@
-from collections import defaultdict
+from typing import List    
+        
+class TrieNode:
+    def __init__(self, val, end=False):
+        self.val = val
+        self.end = 0
+        self.children = {}
+
+    def __repr__(self):
+        return f"{self.val}{f';n={self.end}' if self.end > 0 else ''}"
 
 
 class Trie:
-
     def __init__(self):
-        self._root = defaultdict(str)
+        self.root = TrieNode("#")
 
-    def insert(self, word: str) -> None:
-        temp = self._root
+    def insert(self, word):
+        curr = self.root
         for char in word:
-            if char not in temp:
-                temp[char] = {}
-            temp = temp[char]
-        temp["#"] = True
+            if char not in curr.children:
+                curr.children[char] = TrieNode(char)
+            curr = curr.children[char]
+        curr.end+= 1
 
-    def search(self, word: str) -> bool:
-        temp = self._root 
+    def _visualize(self, node, prefix, is_last):
+        marker = "└── " if is_last else "├── "
+        result = f"{prefix}{marker}{node}\n"
+        children = list(node.children.values())
+        for i, child in enumerate(children):
+            is_last_child = i == len(children) - 1
+            new_prefix = prefix + ("    " if is_last else "│   ")
+            result += self._visualize(child, new_prefix, is_last_child)
+        return result
+
+    def visualize(self):
+        return self._visualize(self.root, "", True)
+
+    def search(self, word):
+        curr = self.root
         for char in word:
-            if char not in temp:
+            if char not in curr.children:
                 return False
-            temp = temp[char]
-        return "#" in temp
+            curr = curr.children[char]
+        return curr.end > 0
+    
 
-    def startsWith(self, prefix: str) -> bool:
-        temp = self._root 
-        for char in prefix:
-            if char not in temp:
+    def searchWith(self, word):
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
                 return False
-            temp = temp[char]
+            curr = curr.children[char]
         return True
+    
 
-    def searchWithDot(self, word: str) -> bool:
-        def dfs(j, node):
-            curr = node
-            for i in range(j, len(word)):
-                c = word[i]
+    def wildcardSearch(self, word):
+        def dfs(i, node):
+            curr  = node
+            for j in range(i, len(word)):
+                c = word[j]
                 if c == ".":
-                    for n in curr:
-                        if n == "#":
-                            continue
-                        if dfs(i+1, curr[n]):
-                            return True
+                    for n in curr.children:
+                        if dfs(j+1, curr.children[n]): return True
                     return False
                 else:
-                    if c not in curr:
+                    if c not in curr.children:
                         return False
-                    curr = curr[c]
-            return '#' in curr
-        return dfs(0, self._root)
+                    curr = curr.children[c]
 
-
-t = Trie()
-t.insert("bad")
-
-
-print(t._root)
-# print(t.startsWith("app"))
-print(t.searchWithDot("b.."))
-
+            return curr.end > 0
+        
+        return dfs(0, self.root)
