@@ -30,12 +30,31 @@ class Trie:
             temp = temp[char]
         return True
 
+    def searchWithDot(self, word: str) -> bool:
+        def dfs(j, node):
+            curr = node
+            for i in range(j, len(word)):
+                c = word[i]
+                if c == ".":
+                    for n in curr:
+                        if n == "#":
+                            continue
+                        if dfs(i+1, curr[n]):
+                            return True
+                    return False
+                else:
+                    if c not in curr:
+                        return False
+                    curr = curr[c]
+            return '#' in curr
+        return dfs(0, self._root)
+
 
 t = Trie()
-t.insert("apple")
-t.insert("apps")
-t.insert("apk")
+t.insert("bad")
+
 
 print(t._root)
-print(t.startsWith("app"))
-print(t.search("app"))
+# print(t.startsWith("app"))
+print(t.searchWithDot("b.."))
+
