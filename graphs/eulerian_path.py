@@ -4,59 +4,59 @@
 
 ## 🔍 Goal:
 
-Find an **Eulerian circuit** or **Eulerian path** in a graph:
+Find an Eulerian circuit or Eulerian path in a graph:
 
-* An **Eulerian circuit** visits every edge **exactly once** and returns to the **starting vertex**.
-* An **Eulerian path** visits every edge **exactly once**, but **does not have to return** to the start.
+ An Eulerian circuit visits every edge exactly once and returns to the starting vertex.
+ An Eulerian path visits every edge exactly once, but does not have to return to the start.
 
 ---
 
 ## ✅ Conditions to Use:
 
-### For **Undirected Graphs**:
+### For Undirected Graphs:
 
-* **Eulerian Circuit**: All vertices have **even degree** and the graph is **connected**.
-* **Eulerian Path**: Exactly **0 or 2 vertices** have **odd degree** and the graph is **connected**.
+ Eulerian Circuit: All vertices have even degree and the graph is connected.
+ Eulerian Path: Exactly 0 or 2 vertices have odd degree and the graph is connected.
 
-### For **Directed Graphs**:
+### For Directed Graphs:
 
-* **Eulerian Circuit**: Every vertex has **equal in-degree and out-degree**, and the graph is **strongly connected**.
-* **Eulerian Path**: Exactly one vertex has **out-degree = in-degree + 1** (start point), and one has **in-degree = out-degree + 1** (end point). All others must have equal in-degree/out-degree.
+ Eulerian Circuit: Every vertex has equal in-degree and out-degree, and the graph is strongly connected.
+ Eulerian Path: Exactly one vertex has out-degree = in-degree + 1  (start point), and one has in-degree = out-degree + 1 (end point). All others must have equal in-degree/out-degree.
 
 ---
 
 ## 🔧 Algorithm Steps (General Idea):
 
-### Step 1: **Pre-check**
+### Step 1: Pre-check
 
-* Validate Eulerian path/circuit conditions (see above).
+ Validate Eulerian path/circuit conditions (see above).
 
-### Step 2: **Build Graph Representation**
+### Step 2: Build Graph Representation
 
-* Use adjacency list or dict (support multiedges if needed).
+ Use adjacency list or dict (support multiedges if needed).
 
-### Step 3: **DFS Traversal (Post-order)**
+### Step 3: DFS Traversal (Post-order)
 
-1. Start from the **start vertex**:
+1. Start from the start vertex:
 
-   * For Eulerian **circuit**, any vertex with non-zero degree.
-   * For Eulerian **path**, the special start vertex (with out-degree = in-degree + 1).
-2. Use **DFS**, and:
+    For Eulerian circuit, any vertex with non-zero degree.
+    For Eulerian path, the special start vertex (with out-degree = in-degree + 1).
+2. Use DFS, and:
 
-   * While there are unused edges from current vertex:
+    While there are unused edges from current vertex:
 
-     * Pick any (e.g., lex smallest) edge.
-     * Remove edge (mark as visited or pop).
-     * Recurse on that edge’s target.
-   * Once stuck (no outgoing edges left), **add vertex to path**.
-3. Finally, **reverse the path**.
+      Pick any (e.g., lex smallest) edge.
+      Remove edge (mark as visited or pop).
+      Recurse on that edge’s target.
+    Once stuck (no outgoing edges left), add vertex to path.
+3. Finally, reverse the path.
 
 ---
 
 ## 🧮 Time Complexity:
 
-* **O(E)** if adjacency list used
-* **O(E log D)** if heap used for lex order (where D = max degree)
+ O(E) if adjacency list used
+ O(E log D) if heap used for lex order (where D = max degree)
 
 ---
 
