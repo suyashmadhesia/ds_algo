@@ -1,5 +1,5 @@
 
-from collections import deque
+from collections import defaultdict, deque
 from typing import List
 
 class BFS:
@@ -71,3 +71,90 @@ class BFS:
                     grid[nr][nc] = grid[r][c] + 1   # distance = parent + 1
                     q.append((nr, nc))              # push for further expansion
                     visited.add((nr, nc))           # mark so we never push again        rows = len(grid)
+
+
+
+
+"""
+0-1 BFS (Zero-One Breadth-First Search) is a specialized version of the Breadth-First Search (BFS) algorithm, used to find the shortest path in a graph where edge weights are only 0 or 1.
+
+🔍 When to Use 0-1 BFS
+Use 0-1 BFS when:
+The graph is unweighted but with implicit weights of 0 and 1.
+Edge weights are either 0 or 1.
+
+You need efficient shortest path computation (faster than Dijkstra's).
+
+Steps:
+
+1. If an edge has weight 0, insert the destination node at the front of the deque.
+2. If an edge has weight 1, insert it at the back of the deque.
+
+
+
+🧠 Time Complexity
+O(V + E) — where V is the number of vertices and E is the number of edges.
+
+✅ Example Use Case
+Suppose you’re moving in a grid where moving to an adjacent cell costs 0 if the cell is empty, and 1 if it contains an obstacle that can be removed. 0-1 BFS helps efficiently compute the minimal cost path.
+
+Problem Example:
+1. Find Safe walk through a grid https://leetcode.com/problems/find-a-safe-walk-through-a-grid/
+2. Minimum Obstacle Removal to Reach Corner https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
+"""
+
+def zero_one_bfs(graph, start):
+    n = len(graph)
+    dist = [float('inf')] * n
+    dist[start] = 0
+    dq = deque([start])
+
+    while dq:
+        node = dq.popleft()
+        for neighbor, weight in graph[node]:
+            if dist[neighbor] > dist[node] + weight:
+                dist[neighbor] = dist[node] + weight
+                if weight == 0:
+                    dq.appendleft(neighbor)
+                else:
+                    dq.append(neighbor)
+
+    return dist
+
+class Solution:
+    def findSafeWalk(self, grid: List[List[int]], health: int) -> bool:
+        # 0 1 DFS problem (similar to dijkstra)
+        graph = defaultdict(list)
+        dirs = [(0, 1), (0, -1), (-1, 0), (1, 0)]
+
+        m = len(grid)
+        n = len(grid[0])
+        for i in range(m):
+            for j in range(n):
+                for dr, dc in dirs:
+                    r, c = dr+i, dc+j
+                    if (r in range(m)) and (c in range(n)):
+                        graph[i, j].append((grid[r][c], (r, c)))
+        
+        costs = [[float('inf') for _ in range(n)] for _ in range(m)]
+        costs[0][0] = grid[0][0]
+
+        q = deque([(grid[0][0] ,(0, 0))])
+        while q:
+            curr_cost, node = q.popleft()
+            r, c = node
+            if r == m-1 and c == n-1 and curr_cost < health:
+                return True
+            for cost, nei in graph[node]:
+                if costs[r][c]+cost < costs[nei[0]][nei[1]] and costs[r][c]+cost < health:
+                    # just update the current health after traversing the shell
+                    # if current health drops to zero then we will try to procced
+                    costs[nei[0]][nei[1]] = costs[r][c]+cost
+                    if cost == 0:
+                        q.appendleft((costs[r][c]+cost, nei))
+                    else:
+                        q.append((costs[r][c]+cost, nei))
+        
+        return False
+
+        
