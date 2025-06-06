@@ -51,6 +51,8 @@ Questions on dijkstra
 
 
 import heapq
+from heapq import heappop, heappush
+from typing import List
 
 def dijkstra(graph, start):
     n = len(graph)
@@ -70,3 +72,26 @@ def dijkstra(graph, start):
                 heapq.heappush(pq, (dist[v], v))
 
     return dist
+
+
+"""
+This is a variation of dijsktra which can maximize the minimum path
+"""
+class Solution:
+    def swimInWater(self, grid: List[List[int]]) -> int:
+        n = len(grid)
+        visited = set()
+        pq = [(grid[0][0], 0, 0)]
+
+        dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+        while pq:
+            t, r, c = heappop(pq)
+            if r == n-1 and c == n-1:
+                return t
+            for dr, dc in dirs:
+                x, y = dr+r, dc+c
+                if x in range(n) and y in range(n) and (x, y) not in visited:
+                    visited.add((x, y))
+                    heappush(pq, (max(t, grid[x][y]), x, y))
+
