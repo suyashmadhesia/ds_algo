@@ -75,7 +75,7 @@ def dijkstra(graph, start):
 
 
 """
-This is a variation of dijsktra which can maximize the minimum path
+This is a variation of dijsktra which can maximize the minimum cost path
 """
 class Solution:
     def swimInWater(self, grid: List[List[int]]) -> int:
