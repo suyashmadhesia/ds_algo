@@ -25,9 +25,9 @@ Find an Eulerian circuit or Eulerian path in a graph:
 
 ---
 
-## 🔧 Algorithm Steps (General Idea):
+🔧 Algorithm Steps (General Idea):
 
-### Step 1: Pre-check
+Step 1: Pre-check
 
  Validate Eulerian path/circuit conditions (see above).
 
