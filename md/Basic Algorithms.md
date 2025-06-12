@@ -1,8 +1,8 @@
 ### **Sorting & Searching**
-- Bubble Sort, Selection Sort, Insertion Sort (**O(n²)**)
-- Merge Sort (**O(n log n)**)
-- Quick Sort (**O(n log n), worst O(n²)**)
-- Binary Search (**O(log n)**) & Variants (lower_bound, upper_bound)
+- [x] Bubble Sort, Selection Sort, Insertion Sort (**O(n²)**)
+- [x] Merge Sort (**O(n log n)**)
+- [x] Quick Sort (**O(n log n), worst O(n²)**)
+- [x] Binary Search (**O(log n)**) & Variants (lower_bound, upper_bound)
 
 ---
 
@@ -15,53 +15,53 @@
 ---
 
 ### **Advanced Graph Algorithms**
-- Topological Sorting (Kahn’s Algorithm, DFS)
-- Dijkstra’s Algorithm (Shortest Path in Weighted Graph)
-- Bellman-Ford Algorithm (Handling Negative Weights)
-- Floyd-Warshall Algorithm (All-Pairs Shortest Path)
-- Kruskal’s & Prim’s Algorithm (Minimum Spanning Tree)
-- Eulerian Path & Circuit
-- Strongly Connected Components (Kosaraju’s Algorithm, Tarjan’s Algorithm)
-- Bridges & Articulation Points (DFS-based)
+- [x] Topological Sorting (Kahn’s Algorithm, DFS)
+- [x] Dijkstra’s Algorithm (Shortest Path in Weighted Graph)
+- [x] Bellman-Ford Algorithm (Handling Negative Weights)
+- [x] Floyd-Warshall Algorithm (All-Pairs Shortest Path)
+- [x] Kruskal’s & Prim’s Algorithm (Minimum Spanning Tree)
+- [x] Eulerian Path & Circuit
+- [ ] Strongly Connected Components (Kosaraju’s Algorithm, Tarjan’s Algorithm)
+- [ ] Bridges & Articulation Points (DFS-based)
 
 ### **Dynamic Programming (DP)**
 - 1D DP:
-  - Fibonacci (Top-Down & Bottom-Up)
-  - Coin Change
-  - Longest Increasing Subsequence (LIS)
-  - Knapsack (0/1 & Unbounded)
-  - Partition Equal Subset Sum
+  - [ ] Fibonacci (Top-Down & Bottom-Up)
+  - [ ] Coin Change
+  - [ ] Longest Increasing Subsequence (LIS)
+  - [ ] Knapsack (0/1 & Unbounded)
+  - [ ] Partition Equal Subset Sum
 - 2D DP:
-  - Matrix Chain Multiplication
-  - Longest Common Subsequence (LCS)
-  - Edit Distance (Levenshtein Distance)
-  - DP on Grids (Minimum Path Sum)
-- DP with Bitmasking
-- DP with Divide & Conquer (Aliens Trick)
+  - [ ] Matrix Chain Multiplication
+  - [ ] Longest Common Subsequence (LCS)
+  - [ ] Edit Distance (Levenshtein Distance)
+  - [ ] DP on Grids (Minimum Path Sum)
+- [ ] DP with Bitmasking
+- [ ] DP with Divide & Conquer (Aliens Trick)
 
 ---
 
 ### **String Algorithms**
-- Rabin-Karp Algorithm (String Matching)
-- Knuth-Morris-Pratt (KMP) Algorithm
-- Z-Algorithm (Pattern Matching)
-- Suffix Array & LCP Array (Longest Common Prefix)
-- Aho-Corasick Algorithm (Multi-Pattern Matching)
-- Manacher’s Algorithm (Longest Palindromic Substring)
+- [ ] Rabin-Karp Algorithm (String Matching)
+- [ ] Knuth-Morris-Pratt (KMP) Algorithm
+- [ ] Z-Algorithm (Pattern Matching)
+- [ ] Suffix Array & LCP Array (Longest Common Prefix)
+- [ ] Aho-Corasick Algorithm (Multi-Pattern Matching)
+- [ ] Manacher’s Algorithm (Longest Palindromic Substring)
 
 ---
 
 ### **Advanced Graph Theory**
-- Heavy-Light Decomposition (HLD)
-- Centroid Decomposition
-- Euler Tour Technique
-- Dynamic Connectivity in Graphs
+- [ ] Heavy-Light Decomposition (HLD)
+- [ ] Centroid Decomposition
+- [ ] Euler Tour Technique
+- [ ] Dynamic Connectivity in Graphs
 
 ### **Segment Trees & Fenwick Tree (Binary Indexed Tree)**
-- Point Updates & Range Queries
-- Lazy Propagation
-- Persistent Segment Tree
-- Merge Sort Tree
+- [ ] Point Updates & Range Queries
+- [ ] Lazy Propagation
+- [ ] Persistent Segment Tree
+- [ ] Merge Sort Tree
 
 ### **Game Theory**
 - Grundy Numbers & Nim Game
