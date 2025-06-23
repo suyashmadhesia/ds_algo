@@ -127,3 +127,77 @@ class Solution:
         
         return mini
 
+
+class Solution2:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        """
+        Problem: Target Sum (Leetcode: https://leetcode.com/problems/target-sum/)
+
+        Goal:
+        Assign '+' and '-' signs to elements in 'nums' such that the resulting sum equals 'target'.
+        Return the number of different expressions that evaluate to 'target'.
+
+        Intuition:
+        This is a variation of the subset sum problem and can be reduced to counting the number of subsets
+        that sum up to a derived value using a mathematical transformation.
+
+        Observation:
+        Let us partition the array into two subsets: S1 (with '+' sign) and S2 (with '-' sign)
+        Let:
+            sum(S1) - sum(S2) = target      -- (i)
+            sum(S1) + sum(S2) = totalSum    -- (ii), where totalSum = sum(nums)
+
+        Adding (i) and (ii):
+            2 * sum(S1) = target + totalSum
+            => sum(S1) = (target + totalSum) / 2
+
+        This means:
+            We need to count the number of subsets whose sum is (target + totalSum) / 2
+
+        Therefore, the problem is reduced to:
+            Count the number of subsets of 'nums' whose sum is (target + totalSum) // 2
+
+        Important Edge Cases:
+        - If (target + totalSum) is odd, it's not possible to find an integer subset sum. Return 0.
+        - If target > totalSum or target < -totalSum, it's also impossible. Return 0.
+
+        Approach:
+        1. Convert the problem to a subset sum count with sum = (target + totalSum) // 2.
+        2. Use memoization (top-down DP) to count the number of ways to reach this subset sum.
+        3. Special care for zero values: 
+           When nums[0] == 0 and t == 0, there are two ways (include or exclude the zero).
+
+        Time Complexity: O(N * s), where N is the number of elements and s is the target subset sum.
+        Space Complexity: O(N * s) for memoization table.
+
+        This approach works correctly even if the array contains zero or negative elements.
+        """
+        total = sum(nums)
+        if (target + total) % 2 != 0 or target > total or target < -total:
+            return 0
+        
+        s = (target + total) // 2
+        n = len(nums)
+
+        dp = [[-1 for _ in range(s + 1)] for _ in range(n)]
+
+        def solve(i, t):
+            if i == 0:
+                if t == 0 and nums[0] == 0:
+                    return 2
+                if nums[0] == t or t == 0:
+                    return 1
+                return 0
+
+            if dp[i][t] != -1:
+                return dp[i][t]
+            
+            not_take = solve(i - 1, t)
+            take = 0
+            if nums[i] <= t:
+                take = solve(i - 1, t - nums[i])
+
+            dp[i][t] = take + not_take
+            return dp[i][t]
+
+        return solve(n - 1, s)
