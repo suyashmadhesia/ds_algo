@@ -11,7 +11,7 @@ def o1knapsack(index, w, weight, nums):
 
     notTake = o1knapsack(index-1, w, weight, nums)
     take = float('-inf')
-    if weight[index] < w:
+    if weight[index] <= w:
         take = nums[index] + o1knapsack(index-1, w-weight[index], weight, nums)
     return max(take, notTake)
 
