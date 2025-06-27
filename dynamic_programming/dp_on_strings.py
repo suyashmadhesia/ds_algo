@@ -71,3 +71,34 @@ class Solution:
 
         # The bottom-right cell holds the LCS length for the full strings
         return dp[n2][n1]
+
+def longestPalindromicSubsequence(s1):
+    # NOTE: Use longest common subsequnce solution to find longest palindromic subsequence
+    '''
+    Reverse the string and then find longest common subsequence
+    '''
+
+
+def longestCommonSubstring(text1, text2):
+    '''
+    # We're considering text1[:j], so the “new” character is text1[j-1]
+    if text2[i - 1] == text1[j - 1]:
+        # Characters match ➔ extend the LCS of the prefixes by 1
+        dp[i][j] = dp[i - 1][j - 1] + 1
+    else:
+        dp[i][j] = 0
+    
+    '''
+
+
+def minimumInsertionToMakeStringPalindrome(s1):
+    '''
+    Solve by just n - longestPalindromicSubsequence(s1)
+    
+    intution: abcaa
+    1. take longest palindrome
+    a b c a a
+    what if we copy bc in reverse order which will give us palindromic string
+    a b c a c b a
+      - -   - - 
+    '''
