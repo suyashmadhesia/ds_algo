@@ -4,7 +4,7 @@ from collections import defaultdict
 
 
 from collections import defaultdict
-from typing import List
+from typing import List, Union
 
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
@@ -101,7 +101,7 @@ class Solution3:
         n = len(grid)
 
         @lru_cache(None)
-        def dp(r1, c1, r2):
+        def dp(r1, c1, r2) -> Union[int, float]:
             c2 = r1 + c1 - r2  # total steps k = r1 + c1 = r2 + c2
 
             # If out of bounds or on a thorn
@@ -129,4 +129,4 @@ class Solution3:
             return result
 
         result = dp(0, 0, 0)
-        return max(0, result)  # If no valid path, return 0
+        return int(max(0, result))  # If no valid path, return 0

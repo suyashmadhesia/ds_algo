@@ -26,16 +26,16 @@
 
 ### **Dynamic Programming (DP)**
 - 1D DP:
-  - [ ] Fibonacci (Top-Down & Bottom-Up)
-  - [ ] Coin Change
-  - [ ] Longest Increasing Subsequence (LIS)
-  - [ ] Knapsack (0/1 & Unbounded)
-  - [ ] Partition Equal Subset Sum
+  - [x] Fibonacci (Top-Down & Bottom-Up)
+  - [x] Coin Change
+  - [x] Longest Increasing Subsequence (LIS)
+  - [x] Knapsack (0/1 & Unbounded)
+  - [x] Partition Equal Subset Sum
 - 2D DP:
   - [ ] Matrix Chain Multiplication
-  - [ ] Longest Common Subsequence (LCS)
+  - [x] Longest Common Subsequence (LCS)
   - [ ] Edit Distance (Levenshtein Distance)
-  - [ ] DP on Grids (Minimum Path Sum)
+  - [x] DP on Grids (Minimum Path Sum)
 - [ ] DP with Bitmasking
 - [ ] DP with Divide & Conquer (Aliens Trick)
 
