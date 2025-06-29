@@ -102,3 +102,9 @@ def minimumInsertionToMakeStringPalindrome(s1):
     a b c a c b a
       - -   - - 
     '''
+
+    def minDistance(self, word1: str, word2: str) -> int:
+            n = len(word1)
+            m = len(word2)
+
+            return n+m - 2 * self.lcs(word1, word2)
