@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 class Solution:
     """
     Dynamic Programming solution for Longest Common Subsequence (LCS).
@@ -28,28 +30,27 @@ class Solution:
     Time Complexity: O(n1 * n2)
     Space Complexity: O(n1 * n2)
     """
+    def longestCommonSubsequenceRescursive(self, text1: str, text2: str) -> int:
+        n1 = len(text1)
+        n2 = len(text2)
+        @lru_cache(None)
+        def solve(i, j):
+            # Base case: if either index is below 0, one string is "empty" => no common subsequence
+            if i < 0 or j < 0:
+                return 0
+            # If characters match, take it and recurse on both strings shortened by one
+            if text1[i] == text2[j]:
+                return 1 + solve(i-1, j-1)
+            # Otherwise, try skipping a character from one string or the other
+            return max(solve(i-1, j), solve(i, j-1))
+        
+        # Top-down call starting from the end of both strings:
+        return solve(n1 - 1, n2 - 1)
+
 
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         n1 = len(text1)
         n2 = len(text2)
-
-        # Uncommenting the following recursive + memo approach illustrates the same idea top-down:
-        #
-        # from functools import lru_cache
-        #
-        # @lru_cache(None)
-        # def solve(i, j):
-        #     # Base case: if either index is below 0, one string is "empty" => no common subsequence
-        #     if i < 0 or j < 0:
-        #         return 0
-        #     # If characters match, take it and recurse on both strings shortened by one
-        #     if text1[i] == text2[j]:
-        #         return 1 + solve(i-1, j-1)
-        #     # Otherwise, try skipping a character from one string or the other
-        #     return max(solve(i-1, j), solve(i, j-1))
-        #
-        # # Top-down call starting from the end of both strings:
-        # # return solve(n1 - 1, n2 - 1)
 
         # Bottom-up DP table: (n2+1) rows for text2, (n1+1) cols for text1
         dp = [[0] * (n1 + 1) for _ in range(n2 + 1)]
@@ -76,6 +77,7 @@ def longestPalindromicSubsequence(s1):
     # NOTE: Use longest common subsequnce solution to find longest palindromic subsequence
     '''
     Reverse the string and then find longest common subsequence
+    e.g: n = lcs(s1, s1[::-1])
     '''
 
 
@@ -103,8 +105,103 @@ def minimumInsertionToMakeStringPalindrome(s1):
       - -   - - 
     '''
 
-    def minDistance(self, word1: str, word2: str) -> int:
-            n = len(word1)
-            m = len(word2)
+def minDistance(self, word1: str, word2: str) -> int:
+        n = len(word1)
+        m = len(word2)
 
-            return n+m - 2 * self.lcs(word1, word2)
+        return n+m - 2 * self.lcs(word1, word2)
+
+
+class Solution2:
+    """
+    Distinct Subsequences Problem
+
+    You have:
+      - A string `s`
+      - A string `t`
+
+    Goal: Count how many **distinct subsequences** of `s` equal `t`.
+
+    A **subsequence** is a sequence that appears in the same relative order, but not necessarily contiguous.
+
+    Intuition:
+      - At each position `i` in `s` and `j` in `t`, ask:
+        1. “What if I skip s[i]?” → solve the subproblem for s[0…i-1], t[0…j]
+        2. “What if I use s[i] (only if s[i] == t[j])?” → solve for s[0…i-1], t[0…j-1]
+        3. Sum both ways (only include the second if characters match)
+      - Recurse all the way down to base cases.
+      - Memoize or tabulate to avoid re-computation.
+
+    Two implementations below:
+      • `solve(i, j)` is a top-down recursive solution with memoization (lru_cache)
+      • `dp` is a bottom-up tabulation solution
+    """
+
+    def numDistinct(self, s: str, t: str) -> int:
+        from functools import lru_cache
+
+        # Top-Down Recursive with Memoization
+        @lru_cache(None)
+        def solve(i: int, j: int) -> int:
+            # Base case: If all characters of t matched
+            if j < 0:
+                return 1
+            # Base case: If s is exhausted but t isn't
+            if i < 0:
+                return 0
+
+            # If current characters match, we can either:
+            # - use s[i] → match t[j], move both i and j
+            # - or skip s[i] → move i only
+            if s[i] == t[j]:
+                return solve(i - 1, j - 1) + solve(i - 1, j)
+            else:
+                # Characters don't match → skip s[i]
+                return solve(i - 1, j)
+
+        # Bottom-Up Tabulation (DP)
+        dp = [[0 for _ in range(len(t) + 1)] for _ in range(len(s) + 1)]
+
+        # Base case: empty target t can be matched in exactly 1 way (by deleting all chars)
+        for i in range(len(s) + 1):
+            dp[i][0] = 1
+
+        # First row already zero-initialized, since empty `s` can't form any non-empty `t`
+
+        for i in range(1, len(s) + 1):
+            for j in range(1, len(t) + 1):
+                if s[i - 1] == t[j - 1]:
+                    dp[i][j] = dp[i - 1][j] + dp[i - 1][j - 1]
+                else:
+                    dp[i][j] = dp[i - 1][j]
+
+        # Return final answer from tabulation (same as solve(len(s)-1, len(t)-1))
+        return dp[len(s)][len(t)]
+
+
+    def numDistinctOptimized(self, s: str, t: str) -> int:
+        """
+        Space Optimized Tabulation:
+        Instead of using a 2D dp table, we use two 1D arrays:
+        - prev[j]: stores dp[i-1][j]
+        - curr[j]: stores dp[i][j]
+
+        We update row by row and copy over.
+        """
+        prev = [0] * (len(t) + 1)
+        prev[0] = 1  # Empty t can always be formed by empty s
+
+        for i in range(1, len(s) + 1):
+            curr = [0] * (len(t) + 1)
+            curr[0] = 1  # Empty target can always be matched
+
+            # Fill current row in reverse to prevent overwriting
+            for j in range(len(t), 0, -1):
+                if s[i - 1] == t[j - 1]:
+                    curr[j] = prev[j] + prev[j - 1]
+                else:
+                    curr[j] = prev[j]
+
+            prev = curr  # Move to next row
+
+        return prev[len(t)]
