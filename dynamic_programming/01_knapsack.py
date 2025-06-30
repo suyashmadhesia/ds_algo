@@ -31,7 +31,7 @@ class Solution:
         n = len(nums)
 
         @lru_cache(None)
-        def dfs(index: int, remainingW: int) -> int:
+        def dfs(index: int, remainingW: int):
             # Base case: no items left
             if index < 0:
                 return 0
@@ -49,7 +49,7 @@ class Solution:
             return max(not_take, take)
 
         # Kick off recursion from the last item with full capacity
-        return dfs(n - 1, W)
+        return int(dfs(n - 1, W))
 
 
     def knapsackDP(self, weight: list[int], nums: list[int], W: int) -> int:
@@ -75,7 +75,7 @@ class Solution:
                     take = nums[i] + dp[i - 1][w - weight[i]]
 
                 # Best of the two goes into dp[i][w]
-                dp[i][w] = max(not_take, take)
+                dp[i][w] = int(max(not_take, take))
 
         # Answer: max value using all n items with capacity W
         return dp[n - 1][W]

@@ -62,7 +62,7 @@ class Solution2:
             cache[i, j] = grid[i][j] + min(solve(i-1, j), solve(i, j - 1))
             return cache[i,j]
 
-        return solve(len(grid)-1, len(grid[0])-1)
+        return int(solve(len(grid)-1, len(grid[0])-1))
     
 
 class Solution3:

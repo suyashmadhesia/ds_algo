@@ -65,7 +65,7 @@ class Solution:
         return dp[n-1][target]
     
 
-class Solution:
+class Solution2:
     def minimumDifference(self, nums: List[int]) -> int:
         """
         NOTE: not working solution if negatvie elements in array is present
@@ -125,10 +125,10 @@ class Solution:
             if dp[n-1][i]:
                 mini = min(mini, abs((sm - i) - i))
         
-        return mini
+        return int(mini)
 
 
-class Solution2:
+class Solution3:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
         """
         Problem: Target Sum (Leetcode: https://leetcode.com/problems/target-sum/)

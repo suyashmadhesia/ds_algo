@@ -80,4 +80,4 @@ class Solution:
                         diff = abs(combined - remaining)
                         min_diff = min(min_diff, diff)
 
-        return min_diff
+        return int(min_diff)
