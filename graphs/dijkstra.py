@@ -50,6 +50,7 @@ Questions on dijkstra
 """
 
 
+from collections import defaultdict
 import heapq
 from heapq import heappop, heappush
 from typing import List
@@ -78,7 +79,7 @@ def dijkstra(graph, start):
 This is a variation of dijsktra which can maximize the minimum cost path
 """
 class Solution:
-    def swimInWater(self, grid: List[List[int]]) -> int:
+    def swimInWater(self, grid: List[List[int]]):
         n = len(grid)
         visited = set()
         pq = [(grid[0][0], 0, 0)]
@@ -95,3 +96,49 @@ class Solution:
                     visited.add((x, y))
                     heappush(pq, (max(t, grid[x][y]), x, y))
 
+
+
+"""
+**Variation**
+Intuition:
+This is a shortest path problem (minimize cost),
+but with an added constraint:
+You can only take paths with ≤ k stops.
+You can't use plain Dijkstra because Dijkstra assumes:
+Once a node is visited with the shortest cost, you can ignore other paths to it.
+But in this case:
+A cheaper path to a node with more stops may be invalid.
+A more expensive path to the same node with fewer stops might be valid.
+So, we need to track both cost and number of stops.
+"""
+# cheapest flight within K-stops
+class Solution2:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        graph = defaultdict(list)
+        for u, v, w in flights:
+            graph[u].append((v, w))
+
+        # Min-heap: (total_cost_so_far, current_node, stops_used)
+        pq = [(0, src, 0)]
+
+        # visited[i] = minimum number of stops used to reach node i
+        visited = [float('inf')] * n
+
+        while pq:
+            cost, u, stops = heappop(pq)
+
+            # Found destination within allowed stops
+            if u == dst:
+                return cost
+
+            # Prune if stops exceed k or if this path is worse than before
+            if stops > k or stops > visited[u]:
+                continue
+
+            visited[u] = stops
+
+            # Explore neighbors
+            for v, w in graph[u]:
+                heappush(pq, (cost + w, v, stops + 1))
+
+        return -1
