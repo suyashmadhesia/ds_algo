@@ -22,7 +22,7 @@ class Solution:
         return self.ans
         
 
-class Solution:
+class Solution2:
     '''
     Function to find all unique subsets from a list of integers that may contain duplicates.
     '''
@@ -48,5 +48,20 @@ class Solution:
         return self.ans
 
 
+def subarray(arr):
+    """
+    
+    Code for finding all the subarray in the array
+    """
 
-        
+    res = []
+    for i in range(len(arr)):
+        for j in range(i, len(arr)):
+            temp = []
+            for k in range(i, j+1):
+                temp.append(arr[k])
+            res.append(temp)
+    return res
+
+
+print(subarray([1, 2, 4]))

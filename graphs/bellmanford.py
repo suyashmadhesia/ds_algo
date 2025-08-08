@@ -31,7 +31,7 @@ class Graph:
         self.edge_list.append(Edge(src,dest,weight))
 
 
-def bellmanFord(graph):
+def bellmanFord(graph: Graph):
 
     vtxCount = graph.size  #no of vertices
     
