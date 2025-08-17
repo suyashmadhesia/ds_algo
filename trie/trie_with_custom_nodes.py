@@ -33,7 +33,7 @@ class Trie:
         return result
 
     def visualize(self):
-        return self._visualize(self.root, "", True)
+        print(self._visualize(self.root, "", True))
 
     def search(self, word):
         curr = self.root
