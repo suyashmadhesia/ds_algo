@@ -7,10 +7,9 @@
 ---
 
 ### **Greedy Algorithms**
-- Activity Selection Problem
-- Fractional Knapsack
-- Huffman Coding
-- Job Scheduling
+- [ ] Activity Selection Problem
+- [ ] Fractional Knapsack
+- [ ] Job Scheduling
 
 ---
 
@@ -36,8 +35,8 @@
   - [x] Longest Common Subsequence (LCS)
   - [ ] Edit Distance (Levenshtein Distance)
   - [x] DP on Grids (Minimum Path Sum)
-- [ ] DP with Bitmasking
-- [ ] DP with Divide & Conquer (Aliens Trick)
+  - [ ] DP with Bitmasking
+  - [ ] DP with Divide & Conquer (Aliens Trick)
 
 ---
 
@@ -64,28 +63,28 @@
 - [ ] Merge Sort Tree
 
 ### **Game Theory**
-- Grundy Numbers & Nim Game
-- Sprague-Grundy Theorem
+- [ ] Grundy Numbers & Nim Game
+- [ ] Sprague-Grundy Theorem
 
 ### **Advanced DP & Optimizations**
-- Convex Hull Trick (Speeding up DP)
-- Divide & Conquer Optimization
-- Bitwise DP
+- [ ] Convex Hull Trick (Speeding up DP)
+- [ ] Divide & Conquer Optimization
+- [ ] Bitwise DP
 
 ### **Flow & Matching Algorithms**
-- Ford-Fulkerson Algorithm (Maximum Flow)
-- Edmonds-Karp Algorithm
-- Hopcroft-Karp Algorithm (Maximum Bipartite Matching)
-- Min-Cost Max Flow
+- [ ] Ford-Fulkerson Algorithm (Maximum Flow)
+- [ ] Edmonds-Karp Algorithm
+- [ ] Hopcroft-Karp Algorithm (Maximum Bipartite Matching)
+- [ ] Min-Cost Max Flow
 
 ---
 
 ### **Data Structures**
-- Sqrt Decomposition (Mo’s Algorithm)
-- Treaps (Balanced BST)
-- Link-Cut Tree
-- Dynamic Programming on Trees
-- Li-Chao Tree
+- [ ] Sqrt Decomposition (Mo’s Algorithm)
+- [ ] Treaps (Balanced BST)
+- [ ] Link-Cut Tree
+- [x] Dynamic Programming on Trees
+- [ ] Li-Chao Tree
 
 ### **Mathematical Optimization**
 - Lagrange Interpolation
@@ -94,13 +93,18 @@
 - Pollard Rho Algorithm (Integer Factorization)
 
 ### **Geometry & Computational Geometry**
-- Convex Hull (Graham’s Scan, Andrew’s Monotone Chain)
-- Line Sweep Algorithms
-- Rotating Calipers
-- Voronoi Diagrams
+- [ ] Convex Hull (Graham’s Scan, Andrew’s Monotone Chain)
+- [ ] Line Sweep Algorithms
+- [ ] Rotating Calipers
+- [ ] Voronoi Diagrams
 
 ### **Quantum Algorithms (For Fun & Future)**
 - Shor’s Algorithm (Prime Factorization)
 - Grover’s Algorithm (Unstructured Search)
 
+### Misllenious
+- [ ] Rolling hash
+
 ---
+
+#### **NOTE: THESE ARE THE ALGORITHMS WHICH ARE NOT CHECKED (BASICALLY LIKE THIS [ ]) I NEEDS TO STUDY**

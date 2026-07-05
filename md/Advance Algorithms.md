@@ -105,3 +105,5 @@ Advanced dynamic trees supporting link/cut and path queries in O(log N).
 - **SOS DP (Sum over Subsets)**
 
 ---
+
+#### **NOTE: THESE ARE THE ALGORITHMS WHICH ARE NOT CHECKED (BASICALLY LIKE THIS [ ]) I NEEDS TO STUDY (Maybe studied some them from Basic Algorithm file)**
